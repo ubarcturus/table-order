@@ -1,0 +1,76 @@
+html body {
+    min-height: 100%;
+    list-style-type: none;
+}
+body {
+    height: 98vh;
+    background: white;
+}
+
+/* FLEXBOX DEFINITION */
+.flex-container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+.box {
+    margin: 5px;
+    line-height: 2vh;
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+    align-items: center;
+
+}
+/* BOX 1 DESK NR */
+
+.desk-nr {
+    margin-top: 5vw;
+    background:  lightcyan;
+    color: black;
+    font-size: 7vw;
+
+}
+
+.desk-nr div {
+    padding-top: 5vw;
+    margin-bottom: 6vw;
+}
+
+.desk-select {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+
+/* BOX 3 CONTENT ORDER */
+
+.content {
+    margin-top: 5vw;
+    flex-grow: 1;
+    background: lightcyan;
+    border: rgb(46, 42, 42);
+    color: black;
+    font-size: 8vw;
+}
+.content div {
+    margin-top:8vw;
+}
+
+.content div summary {
+    color: rgb(46, 42, 42);
+    line-height: 8vh;
+    border-bottom: 2px double rgb(46, 42, 42) ;
+    margin-bottom: 5vw;
+}
+/* BOX 4 CONTENT ORDER BUTTON SEND */
+.order {
+    background-color: rgb(209, 45, 45);
+    padding: 1vw;
+    line-height: 8vh;
+}
