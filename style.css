@@ -61,6 +61,9 @@ body {
 .content div {
     margin-top:8vw;
 }
+.products {
+    font-size: 4vw;
+}
 
 .content div summary {
     color: rgb(46, 42, 42);

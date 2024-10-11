@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form class="flex-container">
+    <form name="order" onsubmit="return validateForm()" methode="post" class="flex-container">
         <li class="box desk-nr">Tisch Nummer
             <div>
-            <select class="desk-select">
+            <select name="desk" class="desk-select">
                 <option>1</option>
                 <option>2</option>
                 <option>3..</option>
@@ -21,20 +21,30 @@
             <div>
                 <details>
                     <summary>Essen</summary>
-                    <div id=""><input type="number" id="points" name="points" step="1"></div>
+                    <input type="hidden" id="points" name="food"></div>
+                    <div id=""><input type="number"  name="food-name" step="1"></div>
                 </details>
+            </div>
+            <div>
                 <details>
                     <summary>Kaltgetränke</summary>
-                    <div id=""></div>
+                    <input type="hidden" id="points" name="food"></div>
+                    <div id=""><input type="number"  name="food-name" step="1"></div>
                 </details>
+            </div>
+            <div>
                 <details>
                     <summary>Heissgetränke</summary>
-                    <div id=""></div>
+                    <input type="hidden" id="points" name="food"></div>
+                    <div class="products" id="Earl_Grey">
+                        Earl Grey
+                        <input type="number" name="food-name" step="1">
+                    </div>
                 </details>
             </div>
         </li>
         
-        <button class="box order">Weiter</button>
+        <button type="submit" class="box order">Weiter</button>
     </form>
 </body>
 </html>
