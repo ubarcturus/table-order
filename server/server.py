@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, reditect, session
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -14,3 +14,6 @@ def handle_get():
         return '<h1>your order! </h1>' + food_name + "at desk:" + desk
     else:
         return render_template('../index.html')
+    
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

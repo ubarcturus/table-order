@@ -1,0 +1,17 @@
+@startuml
+USER -> UI: Order button click
+
+UI --> BACKEND: POST: Order
+DB <-- BACKEND: Query: Tables & Products
+DB --> BACKEND: Tables & Products
+
+BACKEND -> BACKEND: verifie Order
+
+UI <-- BACKEND: verified YES/NO
+UI -> USER: Shows result
+
+USER -> UI: confirm or back
+
+UI -> BACKEND: POST: Order
+BACKEND -> DB : Saves Order
+@enduml

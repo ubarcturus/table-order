@@ -18,7 +18,7 @@ fs.readFile('../index.html', function (err, html) {
 const server = http.createServer((req, res) => {
     res.writeHeader(200, {"Content-Type": "text/html"});  
     res.write(html);  
-    res.end(); 
+    res.end();
 });
 
 server.listen(port, hostname, () => {
@@ -36,14 +36,13 @@ const db = new sqlite3.Database('./db.sqlite');
 CREATE TABLE IF NOT EXISTS desks (
 	'desk' INTEGER PRIMARY KEY AUTOINCREMENT,
 	'active' boolean TRUE,
-    'ordernummer' int
+    'ordernumber' int
 	);
 
 CREATE TABLE IF NOT EXISTS product (
-	'desk' int PRIMARY KEY,
 	'name' int NOT NULL,
 	'quantity' char NOT NULL,
-	FOREIGN KEY (desk) REFERENCES desks(desk)
+	FOREIGN KEY (ordnenumber) REFERENCES desks(desk)
 	);
     */
 

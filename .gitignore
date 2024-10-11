@@ -2,4 +2,4 @@
 /server/db.sqlite
 /server/db.sqlite-journal
 /.venv
-package-lock.json
+/package-lock.json

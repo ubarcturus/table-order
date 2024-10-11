@@ -1,0 +1,20 @@
+@startuml
+class Desk { 
+ Number int
+}
+class Product {
+ Name string
+ Date date-time
+ order_quantity int
+ availability boolean
+}
+class Order {
+ Number int
+ Desk object
+ Products object_array
+ finished boolean
+}
+
+Desk -- Order
+Order -- Product
+@enduml

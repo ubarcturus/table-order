@@ -1,0 +1,12 @@
+@startuml
+
+BACKEND -> BACKEND: Impulse new order
+DB <-- BACKEND: Query: All Active_orders
+DB --> BACKEND: Response: All Active_orders
+UI <-- BACKEND: Send: All Active_orders
+UI --> WORKER: Show Active_orders
+WORKER -> UI: button click finished_order
+
+UI --> BACKEND: POST: order finished
+BACKEND --> DB: Query: Edit order status
+@enduml
