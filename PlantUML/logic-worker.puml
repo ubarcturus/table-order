@@ -1,4 +1,5 @@
 @startuml
+!theme reddress-lightblue
 
 BACKEND -> BACKEND: Impulse new order
 DB <-- BACKEND: Query: All Active_orders

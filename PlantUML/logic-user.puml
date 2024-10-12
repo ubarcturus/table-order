@@ -1,17 +1,24 @@
-@startuml
+@startuml logic-user
+!theme reddress-lightblue
+
 USER -> UI: Order button click
 
 UI --> BACKEND: POST: Order
-DB <-- BACKEND: Query: Tables & Products
-DB --> BACKEND: Tables & Products
-
-BACKEND -> BACKEND: verifie Order
-
-UI <-- BACKEND: verified YES/NO
+alt#LimeGreen
+note right : verifie_order()
+    DB <-- BACKEND: Query: Tables & Products
+    DB --> BACKEND: Tables & Products
+    BACKEND -> BACKEND: verifie Order
+else #LightBlue Successful case
+UI <-- BACKEND: Order
+else #Pink invalid
+UI <-- BACKEND: 404
+end
 UI -> USER: Shows result
 
 USER -> UI: confirm or back
 
-UI -> BACKEND: POST: Order
+UI -> BACKEND: POST: Order 
+note right : save_order()
 BACKEND -> DB : Saves Order
 @enduml
