@@ -1,6 +1,16 @@
 import json
 import datetime
 
+from sqlalchemy import create_engine, Column, Integer, String, JSON
+from sqlalchemy.ext.declarative import declarative_base 
+from sqlalchemy.orm import sessionmaker 
+
+# create an in-memory SQLite database 
+engine = create_engine('sqlite:///db.sqlite', echo=True) 
+  
+Base = declarative_base() 
+  
+
 '''
 from flask import Flask, render_template, request
 
@@ -22,13 +32,13 @@ def handle_get():
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 '''
-class Product(object):
+class Product():
     def __init__(self):
         self.date = datetime.datetime.now()
-        self.availibility = True #TODO check!
+        self.availibility = True #TODO check make method!
         self.products = []
 
-    def add_product(self,name, quantity):
+    def add_product(self, name, quantity):
         product = []
         product.append(name)
         product.append(quantity)
@@ -36,25 +46,43 @@ class Product(object):
         
  # Index on-stage characters using their charid
 
-class Desk(object):
+class Desk():
     numbers = 3
 
     def __init__(self):
         self.numbers = 0 # TODO: ADD
-class Order(object):
-    def __init__(self): #TODO: add desk and finsihed
-        self.number = Desk().numbers
-        self.desk = 1
 
+
+class Order(Base):
+    __tablename__ = 'order'
+    number = Column(Integer, primary_key=True) 
+    desk_number = Column(String) 
+    products_list_json = Column(JSON)
+    finished = Column(String) 
+  
+    def __init__(self, desk_number,products_list_json=products_list_json, finished=False, ): #TODO: add desk and finsihed
+        self.number = desk_number
+        self.desk = 1
         #TODO: replace product-order.json whit json object POST from flask
          # Adding Desk object to Order
-        self.finished = False
+        self.finished = finished
+        self.products_list_json = self.process_main()
 
-        Desk.__init__(self)
-        self.desk_numbers = self.number 
-        objs = [Desk() for i in range(self.number )] # Adding Desk object to Order
-        for obj in objs:
-            Order.add(obj)
+
+
+    def process_main(self):
+        data_list = self.process_products()
+        if self.verifie_order(data_list):
+            product = Product()
+            for data in data_list:
+                product.add_product(data[0],  data[1])
+            return json.dumps(product.products) #SQLalchemy doesnt support ARRAY so JSON instead
+                
+        else:
+            print("There was an invalid order! Someone messing whit source?")
+            return
+        #TODO: Placeholder
+
 
 
     def verifie_order(self, products_list):
@@ -80,25 +108,28 @@ class Order(object):
         return True
 
 
-def process_products(): #open 
-    with open('json/product-order.json', 'r') as file: # TODO: #provision json r -> to flask.POST from user and check valid
-        #Parse Json Product List
-        products = json.load(file)
-    products_list = []
-    for j, product in enumerate(products["products"]):
-        products_list.append((product["name"],product["quantity"]),)
-    return products_list
-
+    def process_products(self): #open 
+        with open('json/product-order.json', 'r') as file: # TODO: #provision json r -> to flask.POST from user and check valid
+            #Parse Json Product List
+            products = json.load(file)
+        products_list = []
+        for j, product in enumerate(products["products"]):
+            products_list.append((product["name"],product["quantity"]),)
+        return products_list
+    
 
 if __name__ == '__main__':
 
-    add_order = Product()
-    order = Order()
-    data_list =  process_products()
-    if order.verifie_order(data_list):
-        for data in data_list:
-            add_order.add_product( data[0],  data[1])
-        print(add_order.products)
-    else:
-        print("There was an invalid order! Someone messing whit the HTML source?")
-        #TODO: Placeholder
+    # create the users table 
+    Base.metadata.create_all(engine) 
+    
+    # create a session to manage the connection to the database 
+    Session = sessionmaker(bind=engine) 
+    session = Session() 
+    
+    # add a new user to the database 
+    order = Order(1)
+    order.process_main() # whit desk number TODO: later maybe direct here products also
+    session.add(order) 
+    session.commit() 
+    

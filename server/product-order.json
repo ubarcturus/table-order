@@ -1,0 +1,25 @@
+{
+    "products": [
+      {
+        "name": "Haribos",
+        "date": "10-10-2024",
+        "quantity": 2
+      },
+      {
+        "name": "Nothing",
+        "date": "10-10-2024",
+        "quantity": 2
+      },
+      {
+        "name": "Molecule Man",
+        "date": "10-10-2024",
+        "quantity": 1
+      },
+      {
+        "name": "NOT A PRODUCT",
+        "date": "10-10-2024",
+        "quantity": 4
+      }
+    ]
+  }
+  

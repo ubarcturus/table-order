@@ -1,0 +1,22 @@
+{
+    "products": [
+      {
+        "name": "Haribos",
+        "price": 4
+      },
+      {
+        "name": "Skittles",
+        "price": 4
+      },
+      {
+        "name": "IceTea Peach",
+        "price": 3.5
+      },
+      {
+        "name": "Molecule Man",
+        "price": 10
+      }
+
+    ]
+  }
+  
