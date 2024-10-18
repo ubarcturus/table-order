@@ -9,16 +9,12 @@
             "quantity": 10
         },
         {
-            "name": "Somethign that soudnt exist",
-            "quantity": 8
-        },
-        {
-            "name": "invalid 2",
-            "quantity": 1
-        },    
-        {
             "name": "invalid 0",
             "quantity": 0
+        },
+        {
+            "name": "Apple",
+            "quantity": 1
         }
     ]
   }

@@ -26,11 +26,13 @@ class Product(object):
     def __init__(self):
         self.date = datetime.datetime.now()
         self.availibility = 1
-        self.products = dict()
+        self.products = []
 
     def add_product(self,name, quantity):
-        self.products[name] = name
-        self.products[quantity] = quantity
+        product = []
+        product.append(name)
+        product.append(quantity)
+        self.products.append(product)
         
  # Index on-stage characters using their charid
 
@@ -55,33 +57,48 @@ class Order(object):
             Order.add(obj)
 
 
-    def verifie_order(self):
+    def verifie_order(self, products_list):
+        '''
         if self.desk > self.desk_numbers:
             return False
-        #Parse Json Product List
-        with open('/json/availiable-products.json' 'r') as r_file:
+        '''
+        #Parse Json Product List #TODO FAILSAVE IF quantity 0
+        with open('json/availiable-products.json', 'r') as r_file:
             products = json.load(r_file)
-        
-        for in_order_product in self.products:
-            #Check if its in Product List.
-            for product in products:
-                pass
+        availiable_products_list = []
 
-def process_products():
-    with open('/json/product-order.json', 'r') as file: # TODO: #provision json r -> to flask.POST from user and check valid
+        for product in products["products"]:
+            availiable_products_list.append(product["name"])
+
+        for product in products_list:
+            if product[0] in availiable_products_list:
+                pass
+            else:
+                print(product, availiable_products_list)
+                return False
+
+        return True
+
+
+def process_products(): #open 
+    with open('json/product-order.json', 'r') as file: # TODO: #provision json r -> to flask.POST from user and check valid
         #Parse Json Product List
         products = json.load(file)
-    products_list = ()
+    products_list = []
     for j, product in enumerate(products["products"]):
-        products_list+= ((product["name"],product["quantity"]),)
-        print(products_list)
+        products_list.append((product["name"],product["quantity"]),)
     return products_list
 
 
 if __name__ == '__main__':
 
     add_order = Product()
-    for data in process_products():
-        add_order.add_product( data[0],  data[1])
+    order = Order()
+    data_list =  process_products()
+    if order.verifie_order(data_list):
+        for data in data_list:
+            add_order.add_product( data[0],  data[1])
+        print(add_order.products)
+    else:
+        print("There was an invalid order! Someone messing whit the HTML source?")
 
-    print(add_order.products)
