@@ -1,0 +1,14 @@
+{
+    "products": [
+        {
+            "name": "Molecule Man"
+        },
+        {
+            "name": "Energy baar"
+        }, 
+        {
+            "name": "invalid 0"
+        }
+    ]
+  }
+  

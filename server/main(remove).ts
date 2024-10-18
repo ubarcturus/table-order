@@ -1,4 +1,4 @@
-import {require} from "../node_modules/requires/"
+import {require} from "requires"
 
 
 //Instanziate sqlite3 Module

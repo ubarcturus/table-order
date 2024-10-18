@@ -1,4 +1,6 @@
 @startuml
+!theme reddress-lightblue
+
 class Desk { 
  Number int
 }
