@@ -25,7 +25,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 class Product(object):
     def __init__(self):
         self.date = datetime.datetime.now()
-        self.availibility = 1
+        self.availibility = True #TODO check!
         self.products = []
 
     def add_product(self,name, quantity):
@@ -48,7 +48,7 @@ class Order(object):
 
         #TODO: replace product-order.json whit json object POST from flask
          # Adding Desk object to Order
-        self.finished = 0
+        self.finished = False
 
         Desk.__init__(self)
         self.desk_numbers = self.number 
@@ -101,4 +101,4 @@ if __name__ == '__main__':
         print(add_order.products)
     else:
         print("There was an invalid order! Someone messing whit the HTML source?")
-
+        #TODO: Placeholder
